@@ -51,7 +51,7 @@ func (s *Services) HandleDownload(w http.ResponseWriter, r *http.Request) {
 	postpath := fmt.Sprintf(`http://localhost:3000/listar/downloads/%s`, filename)
 
 	// Adicionar a URL do arquivo à tabela 'fileserver'
-	err = s.dao.ImputBD(postpath)
+	err = s.dao.InputBD(postpath)
 	if err != nil {
 		http.Error(w, fmt.Sprintf("Erro ao adicionar a URL do arquivo no banco de dados: %v", err), http.StatusInternalServerError)
 		return

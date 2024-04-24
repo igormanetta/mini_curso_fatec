@@ -94,7 +94,7 @@ func (d *DAO) ConsultaFileServer() http.HandlerFunc {
 }
 
 // ImputBD Função para adicionar o caminho do arquivo baixado à tabela 'fileserver'
-func (d *DAO) ImputBD(filepath string) error {
+func (d *DAO) InputBD(filepath string) error {
 
 	// Consulta SQL para inserir o caminho do arquivo na tabela 'fileserver'
 	query := `INSERT INTO fileserver (url) VALUES ($1)`
