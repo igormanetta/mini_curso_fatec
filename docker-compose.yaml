@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    container_name: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: fileserver
+  fileserver:
+    image: 271295/fileserver
+    restart: always
+    container_name: fileserver
+    ports:
+      - "3000:3000"
+    volumes:
+      - file_data:/app/basedir/downloads
+    environment:
+      DB_NAME: fileserver
+      DB_HOST: db
+      FOLDER_PATH: ./basedir/
+    depends_on:
+      - db
+volumes:
+  db_data:
+  file_data:
